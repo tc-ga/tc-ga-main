@@ -128,8 +128,38 @@
                         <td colspan="7"><span class="gLeft">[기본배송]</span> 상품구매금액 <strong>{$normal_total_product_price}<span class="{$normal_total_option_price_display|display}"> ({$normal_total_option_price})</span></strong><span class="{$total_vat_display|display}"> + 부가세 {$normal_total_vat_price}</span> + 배송비 {$normal_total_delv_price} + 지역별배송비 {$normal_total_special_delv_price}<span class="{$normal_total_product_benefit_price_display|display}"> - 상품할인금액 {$normal_total_product_benefit_price}</span> = 합계 : <strong class="txtEm gIndent10">{$normal_total_price_front_head}<span class="txt18">{$normal_total_price_front}</span>{$normal_total_price_front_tail}</strong> <span class="{$normal_total_price_ref_display|display}">{$normal_total_price_back_head}{$normal_total_price_back}{$normal_total_price_back_tail}</span></td>
                     </tr>
                 </tfoot>
+                <!-- gtag.js  20200107 woosungchu -->
+                <script type="text/javascript">
+                  // https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce 참고
+                  var items = [];
+
+                  document.addEventListener("DOMContentLoaded", function(event) {
+                    // 최종적으로 이벤트 보냄
+                    gtag('event', 'purchase', {
+                      "transaction_id": "{$order_id}",
+                      "affiliation": "lockcolor",
+                      "value": "{$total_order_price}",
+                      "currency": "KRW",
+                      "tax": "{$normal_total_vat_price}",
+                      "items": items
+                    });
+                    console.log(items)
+                  });
+
+                </script>
                 <tbody module="Order_normalresultlist" class="center">
                     <tr>
+                      <script type="text/javascript">
+                        // 첫번째 아이템
+                        items.push({
+                          "id": "/product/detail.html{$param}",
+                          "name": "{$product_name}",
+                          "list_name": "Search Results",
+                          "variant": "{$option_str}",
+                          "quantity": "{$product_quantity}",
+                          "price": '{$product_total_price_front}'.split(',').join('')
+                        });
+                      </script>
                         <td class="thumb"><a href="/product/detail.html{$param}"><img src="{$product_image}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="" /></a></td>
                         <td class="left">
                             <strong class="name">{$product_name_link}</strong>
@@ -156,6 +186,19 @@
                         <td class="right"><strong>{$product_total_price_front_head}{$product_total_price_front}{$product_total_price_front_tail}</strong><div class="{$product_total_price_ref_display|display}">{$product_total_price_back_head}{$product_total_price_back}{$product_total_price_back_tail}</div></td>
                     </tr>
                     <tr>
+                        <script type="text/javascript">
+                          // 2번째 아이템부터 마지막 아이템까지 담기
+                          items.push({
+                            "id": "/product/detail.html{$param}",
+                            "name": "{$product_name}",
+                            "list_name": "Search Results",
+                            "variant": "{$option_str}",
+                            "quantity": "{$product_quantity}",
+                            "price": '{$product_total_price_front}'.split(',').join('')
+                          });
+                        </script>
+                        <!-- gtag.js end-->
+
                         <td class="thumb"><a href="/product/detail.html{$param}"><img src="{$product_image}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="" /></a></td>
                         <td class="left">
                             <strong class="name">{$product_name_link}</strong>
@@ -750,17 +793,19 @@ function mobConv() {
 <script src="https://cdn.megadata.co.kr/js/en_script/3.6/enliple_min3.6.js" defer="defer" onload="mobConv()"></script>
 <!-- Enliple Tracker v3.6 [결제전환] end -->
 
-                                        <!-- 카카오픽셀 구매전환 -->
-                <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-                <script type="text/javascript">
-                      kakaoPixel('7053635957841282225').pageView();
-                      kakaoPixel('7053635957841282225').purchase({
-                        total_quantity: "1", // 주문 내 상품 개수(optional)
-                        total_price: "{$total_order_price}",  // 주문 총 가격(optional)
-                        currency: "KRW"     // 주문 가격의 화폐 단위(optional, 기본 값은 KRW)
-                    });
-                </script>
-                <!-- 카카오픽셀 구매전환-->
+                        <!-- 카카오픽셀 구매전환 -->
+<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+<script type="text/javascript">
+      kakaoPixel('7053635957841282225').pageView();
+      kakaoPixel('7053635957841282225').purchase({
+        total_quantity: "1", // 주문 내 상품 개수(optional)
+        total_price: "{$total_order_price}",  // 주문 총 가격(optional)
+        currency: "KRW"     // 주문 가격의 화폐 단위(optional, 기본 값은 KRW)
+    });
+</script>
+<!-- 카카오픽셀 구매전환-->
+
+
 
 
         <a href="#none" class="close" onclick="{$total_benefit_layer_off}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기" /></a>
