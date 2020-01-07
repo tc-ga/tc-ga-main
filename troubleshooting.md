@@ -8,6 +8,11 @@
 2.  장바구니 버튼을 php함수가 먹고 있음
  - 조회화면해보자
 
+3. 전자상거래 모바일화면 공통 html (header.html) 같은것을 못찾겠음
+ - 걍 거래완료 화면에 gtag.js 박아버림
+
+4. 상품별 구매합계가 단가로 들어가버림;;;   
+
 2. [이벤트 쏘기](https://developers.google.com/analytics/devguides/collection/gtagjs/sending-data)
 
 ```
