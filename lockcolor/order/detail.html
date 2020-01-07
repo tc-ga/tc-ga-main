@@ -687,7 +687,7 @@ function mobRfShop() {
               "id": "/product/detail.html{$param}",
               "name": "{$name}",
               /*"variant": "{$option_str}",*/
-              "quantity": qty,
+              "quantity": Number(qty),
               "price": {$product_price}
             });
         } // end for
