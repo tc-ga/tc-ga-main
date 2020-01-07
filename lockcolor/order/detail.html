@@ -578,7 +578,7 @@
 
 
 						<div id="{$total.total_price_id}" class="totalPrice">
-							<strong class="df-lang-total">TOTAL</strong> <span class="{$total.total_cnt}"><strong><em>0</em></strong> <span class="df-lang-total-count">(0개)</span></span>
+							<strong class="df-lang-total">TOTAL</strong> <span class="{$total.total_cnt}"><strong><em id="total_price_em">0</em></strong> <span class="df-lang-total-count">(0개)</span></span>
 						</div>
 						<p class="ec-base-help txt11 lang-price-warning {$price_warning_class}">할인가가 적용된 최종 결제예정금액은 주문 시 확인할 수 있습니다.</p>
 						<!-- //2017-05-25 업데이트 끝 -->
@@ -656,7 +656,66 @@ function mobRfShop() {
 <script src="https://cdn.megadata.co.kr/js/en_script/3.6/enliple_min3.6.js" defer="defer" onload="mobRfShop()"></script>
 <!-- Enliple Shop Log Tracker v3.6 end  -->
 
+<!-- gtag.js on Naver Pay 20200107 -->
+<script type="text/javascript">
+  var naverPayBtn;
 
+  document.addEventListener("DOMContentLoaded", function(event) {
+    naverPayBtn = document.querySelectorAll('[id^=NPAY_BUY_LINK_IDNC_ID_]')[0];
+    var once = true;
+
+    naverPayBtn.addEventListener("click", function(event){
+      var nPayProducts = document.getElementsByClassName('option_product');
+      var items = [];
+
+      if(nPayProducts.length > 0 && once){
+        var qty = 1;
+        var price = 0;
+        var totalPrice = 0;
+
+        // item 항목 담기
+        for (var i = 0; i < nPayProducts.length; i++) {
+            qty = document.getElementById('option_box'+ (i+1) +'_quantity').value;
+
+            var priceSpan = document.getElementById('option_box'+ (i+1) +'_price');
+            if(priceSpan){
+              price = priceSpan.getElementsByTagName('input')[0].value;
+              totalPrice += Number(price);
+              console.log(price);
+            }
+
+            items.push({
+              "id": "/product/detail.html{$param}",
+              "name": "{$name}",
+              /*"variant": "{$option_str}",*/
+              "quantity": qty,
+              "price": price
+            });
+        } // end for
+
+        console.log(totalPrice);
+        console.log('네이버 페이 버튼을 누릅니다')
+
+        gtag('event', 'purchase', {
+          "transaction_id": (new Date()).getTime() + "{$product_no}",
+          "affiliation": "lockcolor",
+          "value": totalPrice,
+          "currency": "KRW",
+          "items": items
+        });
+        once = false;
+
+      } //end if
+
+    }); // end onclick
+
+
+  }); // end DOMContentLoaded
+
+
+</script>
+
+<!-->
 
 						<!-- 네이버 체크아웃 구매 버튼 -->
 						<div id="NaverChk_Button"></div>
