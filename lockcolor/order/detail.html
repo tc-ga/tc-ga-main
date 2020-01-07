@@ -680,8 +680,7 @@ function mobRfShop() {
             var priceSpan = document.getElementById('option_box'+ (i+1) +'_price');
             if(priceSpan){
               price = priceSpan.getElementsByTagName('input')[0].value;
-              totalPrice += Number(price);
-              console.log(price);
+              totalPrice += Number(price);//합계용
             }
 
             items.push({
@@ -689,12 +688,9 @@ function mobRfShop() {
               "name": "{$name}",
               /*"variant": "{$option_str}",*/
               "quantity": qty,
-              "price": price
+              "price": {$product_price}
             });
         } // end for
-
-        console.log(totalPrice);
-        console.log('네이버 페이 버튼을 누릅니다')
 
         gtag('event', 'purchase', {
           "transaction_id": (new Date()).getTime() + "{$product_no}",
@@ -703,6 +699,8 @@ function mobRfShop() {
           "currency": "KRW",
           "items": items
         });
+        console.log(totalPrice)
+        console.log(items)
         once = false;
 
       } //end if
