@@ -154,9 +154,10 @@
                         items.push({
                           "id": "/product/detail.html{$param}",
                           "name": "{$product_name}",
+                          "list_position": 1,
                           "variant": "{$option_str}",
-                          "quantity": "{$product_quantity}",
-                          "price": '{$product_price_front}'.split(',').join('')
+                          "quantity": parseInt("{$product_quantity}"),
+                          "price": Number('{$product_price_front}'.split(',').join(''))
                         });
                       </script>
                         <td class="thumb"><a href="/product/detail.html{$param}"><img src="{$product_image}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="" /></a></td>
@@ -190,9 +191,10 @@
                           items.push({
                             "id": "/product/detail.html{$param}",
                             "name": "{$product_name}",
+                            "list_position": (items.length+1),
                             "variant": "{$option_str}",
-                            "quantity": "{$product_quantity}",
-                            "price": '{$product_price_front}'.split(',').join('')
+                            "quantity": parseInt("{$product_quantity}"),
+                            "price": Number('{$product_price_front}'.split(',').join(''))
                           });
                         </script>
                         <!-- gtag.js end-->

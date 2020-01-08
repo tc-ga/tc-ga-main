@@ -13,7 +13,9 @@
 
 4. 상품별 구매합계가 단가로 들어가버림;;;   
 
-2. [이벤트 쏘기](https://developers.google.com/analytics/devguides/collection/gtagjs/sending-data)
+5. 주문완료 수량 안맞음
+  - String을 int로 바꿔보겠다
+
 
 ```
 // Get a reference to the form element, assuming

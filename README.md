@@ -5,6 +5,7 @@
 - [atom 문서편집기](https://atom.io/)
 - [가이드라인](https://dobby-taginhouse.tistory.com/entry/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98-Ecommerce-%EC%BD%94%EB%93%9C-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-ga?category=839975)
 - [상품 속성](https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce)
+- [이벤트 종류](https://developers.google.com/analytics/devguides/collection/gtagjs/events)
 - [중복 호스트 필터 조정](https://mathbang.net/658)
 - [태그 매니저](https://support.google.com/tagmanager/answer/6107124?visit_id=637139741095955287-920588080&rd=1)
 
