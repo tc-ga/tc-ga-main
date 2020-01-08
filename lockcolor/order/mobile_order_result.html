@@ -201,9 +201,10 @@
                                 items.push({
                                   "id": "/product/detail.html{$param}",
                                   "name": "{$product_name}",
+                                  "list_position": 1,
                                   "variant": "{$option_str}",
-                                  "quantity": "{$product_quantity}",
-                                  "price": '{$product_price_front}'.split(',').join('')
+                                  "quantity": parseInt("{$product_quantity}"),
+                                  "price": Number('{$product_price_front}'.split(',').join(''))
                                 });
                               </script>
                                 <div class="prdBox">
@@ -247,9 +248,10 @@
                                 items.push({
                                   "id": "/product/detail.html{$param}",
                                   "name": "{$product_name}",
+                                  "list_position": (items.length+1),
                                   "variant": "{$option_str}",
-                                  "quantity": "{$product_quantity}",
-                                  "price": '{$product_price_front}'.split(',').join('')
+                                  "quantity": parseInt("{$product_quantity}"),
+                                  "price": Number('{$product_price_front}'.split(',').join(''))
                                 });
                               </script>
                               <!-- gtag.js end-->
