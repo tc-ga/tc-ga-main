@@ -1,0 +1,114 @@
+<header id="header">
+	<div id="gnb" class="<!--@import(/dfloor/design/type-gnb.html)-->">
+		<div class="inner">
+			<ul class="du-grid du-cols5">
+				<li class="du-cell" module="Layout_statelogoff"><a href="/member/login.html"><span>로그인</span></a></li>
+				<li class="du-cell" module="Layout_statelogoff">
+					<a href="/member/agreement.html">
+						<span>회원가입</span>
+					<div id="msgbox" class="use-msgbox">
+						<i class="fa fa-caret-up"></i>
+						<span class="rep-msgbox"><!--{rep-msgbox-txt}--></span>
+					</div>
+					</a>
+				</li>
+				<li class="du-cell" module="Layout_statelogon"><a href="{$action_logout}"><span>로그아웃</span></a></li>
+				<li class="du-cell" module="Layout_statelogon"><a href="/member/modify.html"><span>정보수정</span></a></li>
+				<li class="du-cell"><a href="/myshop/index.html"><span>마이쇼핑</span></a></li>
+				<li class="du-cell"><a href="/order/basket.html"><span>카트<span module="myshop_main" class="count {$basket_count_display|display}">{$basket_count}</span></span></a></li>
+				<li class="du-cell"><a href="/myshop/order/list.html"><span>주문조회</span></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="tnb" class="<!--@import(/dfloor/design/type-icon-menu.html)--> <!--@import(/dfloor/design/type-icon-more.html)--> <!--@import(/dfloor/design/type-icon-cart.html)-->">
+		<div class="inner">
+			<div class="btn-menu-area">
+				<a href="#none" class="btn-menu">
+					<span class="l1"></span>
+					<span class="l2"></span>
+					<span class="l3"></span>
+				</a>
+			</div>
+			<h1 module="Layout_LogoTop" class="logo"><a href="/">{$mobile_title}</a></h1>
+			<div class="btn-more-area">
+				<a href="#none" class="btn-more">
+					<span class="l1"></span>
+					<span class="l2"></span>
+					<span class="l3"></span>
+				</a>
+			</div>
+			<div class="btn-cart-area">
+				<a href="/order/basket.html" class="btn-cart">
+					<span class="l1"></span>
+					<span class="l2"></span>
+					<span module="myshop_main" class="count {$basket_count_display|display}">{$basket_count}</span>
+				</a>
+			</div>
+			<div id="dimmed"></div>
+		</div>
+	</div>
+	<div id="lnb">
+		<div class="inner">
+			<div class="type-scroll">
+				<div class="scroll">
+					<div class="cont1">
+						<ul module="layout_category">
+							<li df-cate-no="{$cate_no}"><a href="/{$design_page_url}{$param}"><span>{$name_or_img_tag}</span></a></li>
+							<li df-cate-no="{$cate_no}"><a href="/{$design_page_url}{$param}"><span>{$name_or_img_tag}</span></a></li>
+							<!--@import(/dfloor/html/import/add-category.html)-->
+						</ul>
+					</div>
+					<div class="cont2">
+						메뉴 모아보기
+					</div>
+				</div>
+				<div class="allmenubtn">
+					<a href="#none"></a>
+				</div>
+				<div class="allmenu">
+					<div class="cont">
+						<h3 class="title">카테고리</h3>
+						<ul class="list du-grid" module="layout_category">
+							<li class="du-cell" df-cate-no="{$cate_no}"><a href="/{$design_page_url}{$param}"><span>{$name}</span></a></li>
+							<li class="du-cell" df-cate-no="{$cate_no}"><a href="/{$design_page_url}{$param}"><span>{$name}</span></a></li>
+							<!--@import(/dfloor/html/import/add-category.html)-->
+						</ul>
+						<h3 class="title">커뮤니티</h3>
+						<ul class="list du-grid" module="layout_boardInfo">
+							<li class="du-cell"><a href="{$board_list_url|replace:/board/product/list.html?board_no=4,/board/review/list.html?board_no=4}"><span>{$board_name}</span></a></li>
+							<li class="du-cell"><a href="{$board_list_url|replace:/board/product/list.html?board_no=4,/board/review/list.html?board_no=4}"><span>{$board_name}</span></a></li>
+							<!--@import(/dfloor/html/import/add-board.html)-->
+							<!-- 1:1 문의게시판 -->
+							<li class="du-cell {$consult_display|display}" module="myshop_main"><a href="/board/consult/list.html"><span>1:1 문의란</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="type-grid">
+				<ul module="layout_category" class="du-grid">
+					<li class="du-cell" df-cate-no="{$cate_no}"><a href="/{$design_page_url}{$param}"><span>{$name_or_img_tag}</span></a></li>
+					<li class="du-cell" df-cate-no="{$cate_no}"><a href="/{$design_page_url}{$param}"><span>{$name_or_img_tag}</span></a></li>
+					<!--@import(/dfloor/html/import/add-category.html)-->
+				</ul>
+			</div>
+		</div>
+	</div>
+    <!--카카오픽셀 기본방문-->
+    <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+<script type="text/javascript">
+      kakaoPixel('7053635957841282225').pageView();
+</script>
+    <!--카카오픽셀 기본방문-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145586878-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-145586878-1');
+    </script>
+      <!-- gtag.js Google Analytics -->
+
+</header>
