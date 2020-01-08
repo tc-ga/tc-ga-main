@@ -661,56 +661,53 @@ function mobRfShop() {
   var naverPayBtn;
 
   document.addEventListener("DOMContentLoaded", function(event) {
+    //var clicked = false;
+
     naverPayBtn = document.querySelectorAll('[id^=NPAY_BUY_LINK_IDNC_ID_]')[0];
-    var once = true;
-
     naverPayBtn.addEventListener("click", function(event){
-      var nPayProducts = document.getElementsByClassName('option_product');
-      var items = [];
+        var items = [],
+            id = "/product/detail.html{$param}",
+            name = "{$name}",
+            price = Number({$product_price}), //int
+            totalPrice = 0,
+            quantityInputs, optionInputs;
 
-      if(nPayProducts.length > 0 && once){
-        var qty = 1;
-        var price = 0;
-        var totalPrice = 0;
+        quantityInputs = document.getElementsByName("quantity_opt[]");
+        optionInputs = document.getElementsByName("item_code[]");
 
-        // item 항목 담기
-        for (var i = 0; i < nPayProducts.length; i++) {
-            qty = document.getElementById('option_box'+ (i+1) +'_quantity').value;
+        if(quantityInputs && quantityInputs.length > 0){
+            for (var i = 0; i < quantityInputs.length; i++) {
+                var variant, qty;
 
-            var priceSpan = document.getElementById('option_box'+ (i+1) +'_price');
-            if(priceSpan){
-              price = priceSpan.getElementsByTagName('input')[0].value;
-              totalPrice += Number(price);//합계용
-            }
+                variant = optionInputs[i] ? optionInputs[i].parentNode.innerText : "";
+                qty = quantityInputs[i] ? parseInt(quantityInputs[i].value) : 1;
 
-            items.push({
-              "id": "/product/detail.html{$param}",
-              "name": "{$name}",
-              /*"variant": "{$option_str}",*/
-              "quantity": Number(qty),
-              "price": {$product_price}
+                items.push({
+                  "id": "/product/detail.html{$param}",
+                  "name": "{$name}",
+                  "list_position": (i+1),
+                  "variant" : variant,
+                  "quantity": qty,
+                  "price": price
+                });
+
+                totalPrice += (price * qty);
+            }//endfor
+
+            console.log(items)
+
+            //최종전송
+            gtag('event', 'purchase', {
+              "transaction_id": "{$product_no}_NPAY"+(new Date()).getTime(),
+              "affiliation": "lockcolor",
+              "value": totalPrice,
+              "currency": "KRW",
+              "items": items
             });
-        } // end for
 
-        gtag('event', 'purchase', {
-          "transaction_id": (new Date()).getTime() + "{$product_no}",
-          "affiliation": "lockcolor",
-          "value": totalPrice,
-          "currency": "KRW",
-          "items": items
-        });
-        console.log(totalPrice)
-        console.log(items)
-        once = false;
-
-      } //end if
-
-    }); // end onclick
-
-
+        }// endif
+    });//end onclick
   }); // end DOMContentLoaded
-
-
 </script>
 
 <!-->
